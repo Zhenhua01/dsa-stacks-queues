@@ -1,3 +1,4 @@
+"use strict";
 /** Node: node for a queue. */
 
 class Node {
@@ -20,6 +21,17 @@ class Queue {
   /** enqueue(val): add new value to end of the queue. Returns undefined. */
 
   enqueue(val) {
+    let newNode = new Node(val);
+
+    if (this.first === null) {
+      this.first = newNode;
+      this.last = newNode;
+      this.size++;
+    } else {
+      this.last.next = newNode;
+      this.last = newNode;
+      this.size++;
+    }
 
   }
 
@@ -28,18 +40,35 @@ class Queue {
 
   dequeue() {
 
+    if (this.size === 0) throw new Error;
+
+    let removed = this.first;
+
+    if (this.size !== 1) {
+      this.first = this.first.next;
+    } else {
+      this.first = null;
+      this.last = null;
+    }
+
+    this.size--;
+
+    return removed.val;
+
   }
 
   /** peek(): return the value of the first node in the queue. */
 
   peek() {
+    if (this.size === 0) throw new Error;
 
+    return this.first.val;
   }
 
   /** isEmpty(): return true if the queue is empty, otherwise false */
 
   isEmpty() {
-
+    return this.size === 0 ? true : false;
   }
 }
 
