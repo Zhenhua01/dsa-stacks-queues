@@ -1,4 +1,6 @@
-const { balancedBrackets } = require("./further-study");
+"use strict";
+
+const { balancedBrackets } = require("./balancedBrackets");
 
 describe("test the functionality of balancedBrackets", function () {
   it("returns true when the brackets are balanced", function () {
